@@ -1,0 +1,135 @@
+# 3.3 Migration Strategy & Data Model Considerations
+
+## 1. Purpose of the Migration Strategy
+The migration strategy defines *how identities, entitlements, workflows and authentication mechanisms* transition from the current hybrid environment to the target IAM architecture.  
+The objective is to ensure a **controlled, secure and progressive migration**, minimizing business disruption while strengthening compliance (NIS2, GDPR) and operational maturity.
+
+This strategy covers:
+- Identity sources and lifecycle migration  
+- Directory and authentication alignment (AD ↔ Entra ID)  
+- Authorization model redesign (roles, groups, policies)  
+- Integration patterns for applications  
+- Data model transformation and rationalization  
+
+---
+
+## 2. Migration Principles
+The migration follows a set of guiding principles:
+
+### **Security-first**
+Identity objects, attributes, and entitlements must meet target-state standards before onboarding.
+
+### **Phased & reversible**
+All steps include rollback paths, ensuring operational continuity.
+
+### **Least privilege by design**
+Roles and groups are redesigned following RBAC + ABAC principles aligned with the data model.
+
+### **Automation-oriented**
+Wherever possible, provisioning and access workflows become automated through Entra ID Governance.
+
+### **Zero business disruption**
+Migration windows are aligned with business criticality and operational constraints.
+
+---
+
+## 3. Migration Approach (High-Level Phases)
+
+### **Phase 1 — Foundational Preparation**
+- Validate authoritative source of truth in Workday (HR attributes, job profiles, departments, cost centers).  
+- Normalize identity attributes (naming conventions, unique identifiers, attribute mapping).  
+- Prepare attribute schema mapping between:  
+  - Workday → Entra ID  
+  - Entra ID → Active Directory  
+- Clean up legacy AD objects and remediate duplicates, stale accounts and service accounts.  
+
+### **Phase 2 — Identity Lifecycle Migration**
+- Activate inbound provisioning from Workday to Entra ID.  
+- Implement lifecycle events (Joiner–Mover–Leaver).  
+- Synchronize identity attributes to AD for legacy applications.  
+- Validate provisioning accuracy via controlled pilot populations.
+
+### **Phase 3 — Authentication & SSO Alignment**
+- Introduce Entra ID Conditional Access and MFA baselines.  
+- Migrate applications to modern authentication (OIDC / SAML).  
+- Gradually phase out legacy protocols (ADFS, LDAP where possible).  
+- Enforce passwordless or reduced password footprint.
+
+### **Phase 4 — Authorization & Role Model Migration**
+- Create new RBAC/ABAC roles aligned with the data model.  
+- Implement Entra ID Governance (Entitlement Management) for access packages.  
+- Map application entitlements to the new role structure.  
+
+### **Phase 5 — Application Onboarding & Cutover**
+- Onboard applications by criticality (Tier 0 → Tier 3).  
+- Validate user journeys, provisioning, and access assignments.  
+- Conduct parallel-run periods when needed.  
+- Decommission legacy IAM components progressively.
+
+---
+
+## 4. Data Model Considerations
+
+### **4.1 Identity Data Structure**
+A unified identity schema is required to support:
+- HR attributes (job title, department, manager, cost center)  
+- Unique identifiers (EmployeeID, UUID)  
+- Role attributes (role type, criticality level)  
+- Compliance attributes (recertification owner, review frequency)
+
+**Key decision:** adopt *"Authoritative HR + Enriched Directory"* model.
+
+### **4.2 Attribute Mapping**
+Mapping rules must be consistent across systems:
+
+| Source | Target | Example |
+|--------|--------|---------|
+| Workday | Entra ID | `employeeID`, `department`, `manager` |
+| Entra ID | AD | `displayName`, `email`, `proxyAddresses` |
+| Entra ID → Applications | via SCIM or API | `roles`, `entitlements` |
+
+Attribute transformation rules must be documented and versioned.
+
+### **4.3 Role & Group Model**
+- Move from technical AD groups to **business-aligned roles**.  
+- Implement **dynamic groups** in Entra ID where possible.  
+- Replace entitlement sprawl with structured access packages.
+
+### **4.4 Non-Human Identities Data Model**
+Model includes:
+- Ownership  
+- Purpose  
+- Rotation frequency  
+- Sensitivity level  
+- Credential workflow  
+
+Goal: eliminate unmanaged service accounts.
+
+---
+
+## 5. Risk Considerations
+- **Stale records in AD** may disrupt synchronization.  
+- **Incorrect attribute mapping** may break provisioning flows.  
+- **Parallel systems** increase risk of conflicting updates.  
+- **Application dependency on legacy protocols** may delay onboarding.  
+
+Mitigation strategies include:
+- Controlled pilots  
+- Mandatory attribute validation rules  
+- Migration rehearsal with non-production tenants  
+- Strong governance through change advisory boards (CAB)
+
+---
+
+## 6. Deliverables
+- Identity data model (schema, rules, mapping table)  
+- Role and group model documentation  
+- Migration waves & timeline  
+- Application readiness checklist  
+- Rollback strategy and fallback mechanisms  
+
+---
+
+## 7. Outcome
+The migration strategy ensures a **smooth, secure and compliant transition** toward the future IAM architecture.  
+It standardizes identity data, reduces operational risk, and prepares the foundation for automation, governance, and continuous monitoring via Entra ID Governance and Microsoft Sentinel.
