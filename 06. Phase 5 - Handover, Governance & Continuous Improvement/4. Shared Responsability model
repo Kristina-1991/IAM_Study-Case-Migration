@@ -1,0 +1,36 @@
+# 4. Shared Responsibility Model (Business vs IT)
+
+## 4.1 Objective
+Define clear and sustainable responsibilities across Business, HR, Security, and IT Operations.
+
+## 4.2 Key Principles
+- Business owns **access decisions**  
+- IT owns **technical implementation**  
+- Security defines **policies & controls**  
+- HR owns **identity source accuracy**  
+
+## 4.3 Shared Responsibility Matrix
+
+### Business Units
+- Define job roles & required access  
+- Approve access requests  
+- Perform access reviews  
+
+### HR
+- Maintain correct identity data  
+- Trigger joiner/mover/leaver events  
+
+### IT / IAM Operations
+- Implement provisioning & governance  
+- Maintain integration flows  
+- Monitor anomalies & respond to incidents  
+
+### Security Office
+- Define policies (MFA, Conditional Access, SoD)  
+- Validate compliance with regulations  
+- Oversee risk management  
+
+### Audit & Compliance
+- Conduct periodic audits  
+- Validate evidence and logs  
+
