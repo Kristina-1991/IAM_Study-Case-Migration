@@ -1,0 +1,45 @@
+# 3. Incident Response Playbook (IAM-Specific)
+
+## Objective
+Provide a structured response plan for IAM-related incidents during and after Go-Live.
+
+## Incident Categories
+1. Authentication failures (e.g., CA policy misconfiguration)  
+2. Provisioning errors (HRIS → Entra → AD → apps)  
+3. SSO failures (SAML/OIDC/OAuth)  
+4. Role/entitlement assignment issues  
+5. Access governance workflow errors  
+
+## Response Workflow
+1. **Detection**  
+   - Sentinel alerts  
+   - Admin center notifications  
+   - User reports  
+
+2. **Classification**  
+   - Severity (Critical/Major/Minor)  
+   - Business impact  
+   - Scope of affected systems  
+
+3. **Containment**  
+   - Disable faulty policies  
+   - Pause provisioning connectors  
+   - Switch authentication fallbacks  
+
+4. **Resolution**  
+   - Apply fix (policy, mapping, connector, application config)  
+   - Retest and validate  
+
+5. **Communication**  
+   - Notify stakeholders and business owners  
+   - Provide status updates  
+
+6. **Post-Incident Review**  
+   - Lessons learned  
+   - Update runbooks  
+
+## Deliverables
+- Incident matrix  
+- Severity scale  
+- Predefined remediation actions  
+
