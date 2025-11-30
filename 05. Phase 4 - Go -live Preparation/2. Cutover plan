@@ -1,0 +1,36 @@
+# 2. Cutover Plan
+
+## Objective
+Define step-by-step activities required to transition from the current IAM environment to the new Entra ID–based solution.
+
+## Scope
+- System freeze requirements  
+- Execution timeline (T-48h to T+24h)  
+- Communication waves  
+- Tasks for IAM, Infrastructure, Security, and Application teams  
+
+## Cutover Steps (Example)
+### Before Go-Live (T-48h to T-1h)
+- Freeze identity-related changes  
+- Validate synchronization with HRIS and AD  
+- Backup policies, configuration, and access packages  
+- Pre-deployment checks  
+
+### Go-Live Execution (T0)
+- Deploy Entra ID configuration  
+- Activate provisioning jobs and access governance workflows  
+- Switch SSO endpoints if applicable  
+- Enable Conditional Access policies  
+
+### Post Go-Live (T+1h to T+24h)
+- Validate provisioning events  
+- Confirm access for pilot users  
+- Monitor authentication success/failure  
+- Communicate status updates to stakeholders  
+
+## Deliverables
+- Cutover timeline  
+- Responsible RACI per task  
+- Communication template  
+- Completion checklist  
+
