@@ -1,0 +1,37 @@
+# 3. IAM Processes & Standard Operating Procedures (SOPs)
+
+## 3.1 Purpose
+To ensure repeatability, consistency, and auditability of IAM operations through documented end-to-end processes.
+
+## 3.2 Core IAM Processes
+
+### Identity Lifecycle Management (Joiner–Mover–Leaver)
+- Automated provisioning from HRIS to Entra ID and AD  
+- Manual exceptions workflow integrated with ServiceNow  
+- Deprovisioning with Sentinel monitoring for anomalies  
+
+### Access Requests & Approvals
+- Access packages via Entra ID Governance  
+- Approvers defined through role/department mapping  
+- SLA-based approval monitoring  
+
+### Access Reviews & Recertification
+- Quarterly and annual reviews aligned with compliance  
+- Automated workflows for remediation  
+- Audit exports for GDPR/NIS2  
+
+### Privileged Access Management (If Applicable)
+- Scoped to AD, Entra ID, and cloud workloads  
+- Temporary elevation workflows  
+
+### Application Onboarding
+- Standardized integration checklist  
+- Authentication alignment (SSO, MFA, Conditional Access)  
+
+## 3.3 Standard Operating Procedures (Examples)
+- SOP-01: Create/Delete User Accounts  
+- SOP-02: Access Package Request Processing  
+- SOP-03: Identity Governance Review Cycle Execution  
+- SOP-04: Break Glass Access Management  
+- SOP-05: Audit Log Extraction from Sentinel  
+
